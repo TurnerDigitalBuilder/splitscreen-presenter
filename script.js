@@ -136,12 +136,9 @@ function renderSlide() {
   // Render prompts
   if (slide.prompts?.length) {
     el.promptsContainer.innerHTML = slide.prompts.map((p, i) =>
-      `<button class="chip" data-prompt="${encodeURIComponent(p)}" title="Click to copy">💬 Prompt ${i + 1}</button>`
+      `<a class="chip" href="https://chatgpt.com/?prompt=${encodeURIComponent(p)}" target="_blank" rel="noopener" title="Open in ChatGPT">💬 Prompt ${i + 1}</a>`
     ).join("");
     el.promptsGroup.style.display = "flex";
-    el.promptsContainer.querySelectorAll('.chip').forEach(ch => {
-      ch.addEventListener('click', () => copyToClipboard(decodeURIComponent(ch.dataset.prompt)));
-    });
   } else {
     el.promptsGroup.style.display = "none";
   }
@@ -192,22 +189,6 @@ function toggleFullscreen() {
     document.documentElement.requestFullscreen();
   } else {
     document.exitFullscreen();
-  }
-}
-
-async function copyToClipboard(text) {
-  try {
-    await navigator.clipboard.writeText(text);
-    showToast('Prompt copied to clipboard!');
-  } catch {
-    // Fallback for older browsers
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    ta.remove();
-    showToast('Prompt copied to clipboard!');
   }
 }
 
