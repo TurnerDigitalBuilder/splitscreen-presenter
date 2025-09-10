@@ -212,7 +212,22 @@ function toggleFullscreen() {
 }
 
 function showPromptPreview(text) {
-  el.promptPreview.textContent = text;
+  const encoded = encodeURIComponent(text);
+  el.promptPreview.innerHTML = '';
+
+  const textDiv = document.createElement('div');
+  textDiv.className = 'prompt-text';
+  textDiv.textContent = text;
+
+  const openLink = document.createElement('a');
+  openLink.className = 'btn prompt-open-btn';
+  openLink.href = `https://chatgpt.com/?prompt=${encoded}`;
+  openLink.target = '_blank';
+  openLink.rel = 'noopener';
+  openLink.textContent = 'Open in ChatGPT';
+
+  el.promptPreview.appendChild(textDiv);
+  el.promptPreview.appendChild(openLink);
   el.promptOverlay.style.display = 'flex';
 }
 
