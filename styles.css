@@ -287,6 +287,20 @@ body {
   overflow: auto;
   font-size: 18px;
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prompt-text {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+.prompt-open-btn {
+  align-self: flex-end;
+  margin-top: 4px;
+  text-decoration: none;
 }
 
 .navigation {
