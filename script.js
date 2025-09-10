@@ -31,14 +31,20 @@ const el = {
   jsonFile: document.getElementById('jsonFile'),
   loadLabel: document.querySelector('label[for="jsonFile"]'),
   toast: document.getElementById('toast'),
-  promptPreview: null
+  promptPreview: null,
+  promptOverlay: null
 };
 
 function init() {
   setupEvents();
+  el.promptOverlay = document.createElement('div');
+  el.promptOverlay.className = 'prompt-overlay';
   el.promptPreview = document.createElement('div');
   el.promptPreview.className = 'prompt-preview';
-  document.body.appendChild(el.promptPreview);
+  el.promptOverlay.appendChild(el.promptPreview);
+  document.body.appendChild(el.promptOverlay);
+  el.promptOverlay.addEventListener('click', hidePromptPreview);
+  el.promptPreview.addEventListener('click', (e) => e.stopPropagation());
   try {
     const saved = localStorage.getItem('presentationData');
     if (saved) {
@@ -73,6 +79,9 @@ function setupEvents() {
       case 'f':
       case 'F':
         toggleFullscreen();
+        break;
+      case 'Escape':
+        hidePromptPreview();
         break;
     }
   });
@@ -146,10 +155,8 @@ function renderSlide() {
     el.promptsGroup.style.display = "flex";
     el.promptsContainer.querySelectorAll('.chip').forEach((ch, i) => {
       const promptText = slide.prompts[i];
-      ch.addEventListener('mouseenter', () => showPromptPreview(promptText, ch));
-      ch.addEventListener('mouseleave', hidePromptPreview);
-      ch.addEventListener('focus', () => showPromptPreview(promptText, ch));
-      ch.addEventListener('blur', hidePromptPreview);
+      ch.addEventListener('mouseenter', () => showPromptPreview(promptText));
+      ch.addEventListener('focus', () => showPromptPreview(promptText));
     });
   } else {
     el.promptsGroup.style.display = "none";
@@ -204,17 +211,14 @@ function toggleFullscreen() {
   }
 }
 
-function showPromptPreview(text, anchor) {
+function showPromptPreview(text) {
   el.promptPreview.textContent = text;
-  const rect = anchor.getBoundingClientRect();
-  el.promptPreview.style.display = 'block';
-  el.promptPreview.style.top = `${window.scrollY + rect.bottom + 6}px`;
-  el.promptPreview.style.left = `${window.scrollX + rect.left}px`;
+  el.promptOverlay.style.display = 'flex';
 }
 
 function hidePromptPreview() {
-  if (el.promptPreview) {
-    el.promptPreview.style.display = 'none';
+  if (el.promptOverlay) {
+    el.promptOverlay.style.display = 'none';
   }
 }
 

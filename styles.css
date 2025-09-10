@@ -265,19 +265,28 @@ body {
   border-color: var(--bright-blue);
 }
 
-.prompt-preview {
-  position: absolute;
+.prompt-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
   display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.prompt-preview {
   background: linear-gradient(135deg, #fff8e6, #fff3cc);
-  border: 1px solid #f1c232;
-  padding: 10px;
+  border: 2px solid #f1c232;
+  padding: 24px;
   border-radius: 8px;
   color: #5b4b00;
-  box-shadow: 0 4px 10px var(--shadow);
-  max-width: 300px;
-  z-index: 20;
-  font-size: 13px;
-  line-height: 1.4;
+  box-shadow: 0 8px 20px var(--shadow);
+  max-width: 80%;
+  max-height: 80%;
+  overflow: auto;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .navigation {
