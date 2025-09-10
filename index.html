@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Turner Presentation Companion</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header" role="banner">
+      <div class="brand">
+        <svg class="logo" viewBox="0 0 120 28" xmlns="http://www.w3.org/2000/svg" aria-label="Turner">
+          <text x="0" y="22" fill="white" font-family="Verdana, Arial, sans-serif" font-size="20" font-weight="bold">TURNER</text>
+        </svg>
+        <div class="presentation-title" id="presentationTitle">Presentation Companion</div>
+      </div>
+      <div class="controls">
+        <div class="progress-indicator" id="progressIndicator">1 / 1</div>
+        <label class="btn" for="jsonFile">📁 Load Presentation</label>
+        <input id="jsonFile" type="file" accept=".json" style="display:none"/>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="slide-area" aria-live="polite">
+        <div class="slide-content" id="slideContent">
+          <div class="empty-state">
+            <h2>Welcome</h2>
+            <p>Load a JSON file to start your presentation.</p>
+            <p style="font-size:12px;color:#6b7280">Optimized for split‑screen demos (8:9 ratio)</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="notes-section" id="notesSection">
+        <div class="notes-header">Speaker Notes</div>
+        <ul class="notes-list" id="notesList"></ul>
+      </section>
+
+      <section class="interactive-section" id="interactiveSection">
+        <div class="section-group" id="promptsGroup" style="display:none">
+          <div class="section-label">Prompts (Click to Copy)</div>
+          <div class="prompts-container" id="promptsContainer"></div>
+        </div>
+        <div class="section-group" id="attachmentsGroup" style="display:none">
+          <div class="section-label">Attachments (Click to Open)</div>
+          <div class="attachments-container" id="attachmentsContainer"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="navigation">
+      <div class="nav-buttons">
+        <button class="btn nav-btn" id="prevBtn" disabled>← Previous</button>
+        <button class="btn nav-btn" id="nextBtn" disabled>Next →</button>
+      </div>
+      <button class="btn toggle-btn" id="notesToggle">👁 Toggle Notes</button>
+    </div>
+
+    <footer class="shortcuts-hint">Keyboard: ← → (navigate) | Space (next) | N (notes) | F (fullscreen)</footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
