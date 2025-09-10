@@ -265,6 +265,21 @@ body {
   border-color: var(--bright-blue);
 }
 
+.prompt-preview {
+  position: absolute;
+  display: none;
+  background: linear-gradient(135deg, #fff8e6, #fff3cc);
+  border: 1px solid #f1c232;
+  padding: 10px;
+  border-radius: 8px;
+  color: #5b4b00;
+  box-shadow: 0 4px 10px var(--shadow);
+  max-width: 300px;
+  z-index: 20;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
 .navigation {
   position: relative;
   display: flex;

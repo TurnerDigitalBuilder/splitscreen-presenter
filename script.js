@@ -30,11 +30,15 @@ const el = {
   notesToggle: document.getElementById('notesToggle'),
   jsonFile: document.getElementById('jsonFile'),
   loadLabel: document.querySelector('label[for="jsonFile"]'),
-  toast: document.getElementById('toast')
+  toast: document.getElementById('toast'),
+  promptPreview: null
 };
 
 function init() {
   setupEvents();
+  el.promptPreview = document.createElement('div');
+  el.promptPreview.className = 'prompt-preview';
+  document.body.appendChild(el.promptPreview);
   try {
     const saved = localStorage.getItem('presentationData');
     if (saved) {
@@ -117,6 +121,7 @@ function loadPresentation() {
 
 function renderSlide() {
   const slide = presentation.slides[currentSlideIndex];
+  hidePromptPreview();
   el.progressIndicator.textContent = `${currentSlideIndex + 1} / ${presentation.slides.length}`;
 
   let html = "";
@@ -136,9 +141,16 @@ function renderSlide() {
   // Render prompts
   if (slide.prompts?.length) {
     el.promptsContainer.innerHTML = slide.prompts.map((p, i) =>
-      `<a class="chip" href="https://chatgpt.com/?prompt=${encodeURIComponent(p)}" target="_blank" rel="noopener" title="Open in ChatGPT">💬 Prompt ${i + 1}</a>`
+      `<a class="chip" href="https://chatgpt.com/?prompt=${encodeURIComponent(p)}" target="_blank" rel="noopener">💬 Prompt ${i + 1}</a>`
     ).join("");
     el.promptsGroup.style.display = "flex";
+    el.promptsContainer.querySelectorAll('.chip').forEach((ch, i) => {
+      const promptText = slide.prompts[i];
+      ch.addEventListener('mouseenter', () => showPromptPreview(promptText, ch));
+      ch.addEventListener('mouseleave', hidePromptPreview);
+      ch.addEventListener('focus', () => showPromptPreview(promptText, ch));
+      ch.addEventListener('blur', hidePromptPreview);
+    });
   } else {
     el.promptsGroup.style.display = "none";
   }
@@ -189,6 +201,20 @@ function toggleFullscreen() {
     document.documentElement.requestFullscreen();
   } else {
     document.exitFullscreen();
+  }
+}
+
+function showPromptPreview(text, anchor) {
+  el.promptPreview.textContent = text;
+  const rect = anchor.getBoundingClientRect();
+  el.promptPreview.style.display = 'block';
+  el.promptPreview.style.top = `${window.scrollY + rect.bottom + 6}px`;
+  el.promptPreview.style.left = `${window.scrollX + rect.left}px`;
+}
+
+function hidePromptPreview() {
+  if (el.promptPreview) {
+    el.promptPreview.style.display = 'none';
   }
 }
 
