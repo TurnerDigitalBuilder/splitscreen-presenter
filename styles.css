@@ -270,6 +270,11 @@ body {
   gap: 10px;
 }
 
+.utility-buttons {
+  display: flex;
+  gap: 10px;
+}
+
 .nav-btn {
   background: var(--turner-blue);
 }

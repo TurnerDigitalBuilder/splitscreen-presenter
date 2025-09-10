@@ -14,10 +14,6 @@
           src="turner-logo.svg"
           alt="Turner logo"
         />
-        <div class="controls">
-          <label class="btn" for="jsonFile" title="Load Presentation">📁 Load Presentation</label>
-          <input id="jsonFile" type="file" accept=".json" style="display:none"/>
-        </div>
         <div class="presentation-title" id="presentationTitle">Presentation Companion</div>
       </header>
 
@@ -55,7 +51,11 @@
         <button class="btn nav-btn" id="nextBtn" disabled>Next →</button>
       </div>
       <div class="progress-indicator" id="progressIndicator">1 / 1</div>
-      <button class="btn toggle-btn" id="notesToggle" aria-label="Toggle Notes" title="Toggle Notes">📝</button>
+      <div class="utility-buttons">
+        <label class="btn toggle-btn" for="jsonFile" title="Load Presentation">📁</label>
+        <button class="btn toggle-btn" id="notesToggle" aria-label="Toggle Notes" title="Toggle Notes">📝</button>
+        <input id="jsonFile" type="file" accept=".json" style="display:none"/>
+      </div>
     </div>
 
     <footer class="shortcuts-hint">Keyboard: ← → (navigate) | Space (next) | N (notes) | F (fullscreen)</footer>
