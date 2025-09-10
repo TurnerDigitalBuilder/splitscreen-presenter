@@ -153,6 +153,24 @@ body {
   color: var(--dark-grey);
 }
 
+.slide-body > * + * {
+  margin-top: 12px;
+}
+
+.slide-body ul,
+.slide-body ol {
+  margin: 14px 0 14px 28px;
+  padding-left: 0;
+}
+
+.slide-body li {
+  margin: 6px 0;
+}
+
+.slide-body li::marker {
+  color: var(--bright-blue);
+}
+
 .slide-body img {
   max-width: 100%;
   height: auto;
