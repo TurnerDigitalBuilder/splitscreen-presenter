@@ -8,20 +8,18 @@
 </head>
 <body>
   <div class="container">
-    <header class="header" role="banner">
-      <div class="brand">
+      <header class="header" role="banner">
         <img
           class="logo"
           src="turner-logo.svg"
           alt="Turner logo"
         />
+        <div class="controls">
+          <label class="btn" for="jsonFile" title="Load Presentation">📁 Load Presentation</label>
+          <input id="jsonFile" type="file" accept=".json" style="display:none"/>
+        </div>
         <div class="presentation-title" id="presentationTitle">Presentation Companion</div>
-      </div>
-      <div class="controls">
-        <label class="btn" for="jsonFile" title="Load Presentation">📁 Load Presentation</label>
-        <input id="jsonFile" type="file" accept=".json" style="display:none"/>
-      </div>
-    </header>
+      </header>
 
     <main class="main-content">
       <section class="slide-area" aria-live="polite">

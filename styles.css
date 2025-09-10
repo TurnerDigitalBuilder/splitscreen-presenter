@@ -51,14 +51,6 @@ body {
   z-index: 10;
 }
 
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-  margin-left: auto;
-}
-
 .logo {
   height: 28px;
   display: block;
@@ -71,6 +63,9 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-left: auto;
+  text-align: right;
+  min-width: 0;
 }
 
 .controls {
