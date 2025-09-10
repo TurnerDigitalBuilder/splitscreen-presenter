@@ -253,6 +253,7 @@ body {
 }
 
 .navigation {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -260,6 +261,13 @@ body {
   padding: 12px 16px;
   border-top: 1px solid var(--border);
   background: var(--surface);
+}
+
+.navigation .progress-indicator {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .nav-buttons {

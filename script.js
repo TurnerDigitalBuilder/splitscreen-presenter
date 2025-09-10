@@ -29,6 +29,7 @@ const el = {
   nextBtn: document.getElementById('nextBtn'),
   notesToggle: document.getElementById('notesToggle'),
   jsonFile: document.getElementById('jsonFile'),
+  loadLabel: document.querySelector('label[for="jsonFile"]'),
   toast: document.getElementById('toast')
 };
 
@@ -109,6 +110,9 @@ function loadPresentation() {
   el.prevBtn.disabled = false;
   el.nextBtn.disabled = false;
   renderSlide();
+  if (el.loadLabel) {
+    el.loadLabel.textContent = '📁';
+  }
 }
 
 function renderSlide() {

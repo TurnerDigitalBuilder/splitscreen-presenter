@@ -18,8 +18,7 @@
         <div class="presentation-title" id="presentationTitle">Presentation Companion</div>
       </div>
       <div class="controls">
-        <div class="progress-indicator" id="progressIndicator">1 / 1</div>
-        <label class="btn" for="jsonFile">📁 Load Presentation</label>
+        <label class="btn" for="jsonFile" title="Load Presentation">📁 Load Presentation</label>
         <input id="jsonFile" type="file" accept=".json" style="display:none"/>
       </div>
     </header>
@@ -57,7 +56,8 @@
         <button class="btn nav-btn" id="prevBtn" disabled>← Previous</button>
         <button class="btn nav-btn" id="nextBtn" disabled>Next →</button>
       </div>
-      <button class="btn toggle-btn" id="notesToggle">👁 Toggle Notes</button>
+      <div class="progress-indicator" id="progressIndicator">1 / 1</div>
+      <button class="btn toggle-btn" id="notesToggle" aria-label="Toggle Notes" title="Toggle Notes">📝</button>
     </div>
 
     <footer class="shortcuts-hint">Keyboard: ← → (navigate) | Space (next) | N (notes) | F (fullscreen)</footer>
